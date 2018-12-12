@@ -1,6 +1,6 @@
 {
   "name": "simple-color-console",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "In a simple way, let your node command line print out a colored log.",
   "main": "index.js",
   "scripts": {
