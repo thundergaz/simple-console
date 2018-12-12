@@ -21,4 +21,5 @@ log.success('message...');
 log.warn('message...');
 log.info('message...');
 log.info(object);
+log.info('message1...', 'message2...');
 ```

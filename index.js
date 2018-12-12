@@ -1,25 +1,28 @@
 const chalk = require('chalk');
 const print = console.log;
 const log = {
-    info: (msg) => {
-        print(chalk.bgBlue.black('信息'), printLog(msg,'blue'));
+    info: (...msg) => {
+        print(chalk.bgBlue.black('info'), printLog('blue', msg));
     },
-    warn: (msg) => {
-        print(chalk.bgYellow.black('警告'), printLog(msg,'yellow'));
+    warn: (...msg) => {
+        print(chalk.bgYellow.black('warn'), printLog('yellow', msg));
     },
-    error: (msg) => {
-        print(chalk.bgRed.black('错误'), printLog(msg,'red'));
+    error: (...msg) => {
+        print(chalk.bgRed.black('error'), printLog('red', msg));
     },
-    success: (msg) => {
-        print(chalk.bgGreen.black('成功'), printLog(msg,'green'));
+    success: (...msg) => {
+        print(chalk.bgGreen.black('success'), printLog('green', msg));
     }
 };
-function printLog(msg, color) {
+function printLog(color, msg) {
     if ( typeof msg === 'object') {
-        return msg;
+        if (msg.length) {
+            return chalk[color](...msg);
+        } else {
+            return msg;
+        }
     } else {
         return chalk[color](msg);
     }
-   
 }
 module.exports = log;
