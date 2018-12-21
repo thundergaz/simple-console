@@ -1,28 +1,30 @@
 const chalk = require('chalk');
 const print = console.log;
+const colorMap = {
+    info: 'blue',
+    warn: 'yellow',
+    error: 'red',
+    success: 'green'
+}
 const log = {
     info: (...msg) => {
-        print(chalk.bgBlue.black('info'), printLog('blue', msg));
+        printLog('info', msg);
     },
     warn: (...msg) => {
-        print(chalk.bgYellow.black('warn'), printLog('yellow', msg));
+        printLog('warn', msg);
     },
     error: (...msg) => {
-        print(chalk.bgRed.black('error'), printLog('red', msg));
+        printLog('error', msg);
     },
     success: (...msg) => {
-        print(chalk.bgGreen.black('success'), printLog('green', msg));
+        printLog('success', msg);
     }
 };
-function printLog(color, msg) {
-    if ( typeof msg === 'object') {
-        if (msg.length) {
-            return chalk[color](...msg);
-        } else {
-            return msg;
-        }
+function printLog(type, msg) {
+    if (msg.some( x => typeof x === 'object')) {
+        print(chalk.bgBlue.black(type), ...msg);
     } else {
-        return chalk[color](msg);
+        print(chalk.bgBlue.black(type), chalk[colorMap[type]](...msg));
     }
 }
 module.exports = log;
