@@ -6,7 +6,7 @@ const colorMap = {
     error: 'red',
     success: 'green'
 }
-const log = {
+const LogF = {
     info: (...msg) => {
         printLog('info', msg);
     },
@@ -27,4 +27,5 @@ function printLog(type, msg) {
         print(chalk.bgBlue.black(type), chalk[colorMap[type]](...msg));
     }
 }
-module.exports = log;
+module.exports = LogF;
+module.exports.default = module.exports; // For TypeScript
